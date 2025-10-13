@@ -1,0 +1,304 @@
+.vs-container-lg {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: linear-gradient(180deg, #f6fff8, #e6ffef);
+  padding: 2rem 1rem 6rem;
+  overflow-x: hidden;
+}
+
+/* CARD PRINCIPAL */
+.vs-card-lg {
+  width: 100%;
+  max-width: 460px;
+  background: #fff;
+  border-radius: 28px;
+  padding: 2.4rem 1.8rem 2.2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  position: relative;
+}
+
+/* TÍTULO */
+.vs-title-lg {
+  font-size: 2.1rem;
+  color: #0a3a18;
+  font-weight: 900;
+  margin-bottom: 1.6rem;
+}
+
+/* VIDEO MAIOR E CENTRALIZADO */
+.vs-video-wrap-lg {
+  width: 120%;
+  margin-left: -10%;
+  margin-bottom: 2rem;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
+}
+
+/* PERFIL */
+.vs-profile-card-lg {
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #dff0e2;
+  padding: 24px 16px;
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.vs-profile-name {
+  font-weight: 800;
+  color: #0e3f1e;
+  font-size: 1.25rem;
+  margin-bottom: 0.2rem;
+}
+
+.vs-profile-phone {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #0d7a3e;
+  margin-bottom: 0.6rem;
+}
+
+.vs-profile-status {
+  color: #00a94f;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.vs-green-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00a94f;
+  display: inline-block;
+}
+
+.vs-profile-meta {
+  font-size: 0.95rem;
+  color: #333;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.vs-meta-row {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* PROGRESSO */
+.vs-progress-area-lg {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.8rem;
+}
+
+.vs-progress-bar-lg {
+  flex: 1;
+  height: 14px;
+  background: #e8e8e8;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.vs-progress-fill-lg {
+  height: 100%;
+  background: linear-gradient(90deg, #00c853, #007f35);
+  transition: width 0.3s linear;
+}
+
+.vs-progress-text-lg {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #093915;
+  min-width: 40px;
+  text-align: right;
+}
+
+/* STATUS BOX */
+.vs-status-box-lg {
+  border-radius: 18px;
+  padding: 1.4rem 1.2rem;
+  background: #f8fff9;
+  border: 1px solid #ccebd3;
+  text-align: left;
+  margin-bottom: 2.2rem;
+}
+
+.vs-step-lg {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 10px;
+}
+
+.vs-step-icon-lg {
+  font-size: 1.2rem;
+  min-width: 22px;
+}
+
+.vs-step-text-lg {
+  font-size: 1.05rem;
+}
+
+.vs-step-lg.active .vs-step-text-lg {
+  font-weight: 700;
+  color: #00a94f;
+}
+
+/* BOTÕES CONVERSIVOS */
+.vs-access-btn-big,
+.vs-next-lg {
+  background: #00b14a;
+  color: white;
+  font-weight: 900;
+  border: none;
+  border-radius: 16px;
+  padding: 18px;
+  width: 100%;
+  max-width: 330px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 1.2rem;
+  margin: 1.6rem auto 0;
+  box-shadow: 0 6px 18px rgba(0, 177, 74, 0.25);
+}
+
+.vs-access-btn-big:hover,
+.vs-next-lg:hover {
+  background: #009f42;
+  transform: scale(1.05);
+}
+
+/* ANIMAÇÃO PULSANTE */
+.pulse {
+  animation: pulse 1.6s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 177, 74, 0.5); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(0, 177, 74, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 177, 74, 0); }
+}
+
+/* FOOTER CONFIÁVEL */
+.vs-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #f6fff8;
+  font-size: 0.95rem;
+  color: #333;
+  border-top: 2px solid #d9f0db;
+  margin-top: 2rem;
+}
+
+.vs-footer-email {
+  margin: 0.6rem 0;
+  color: #555;
+}
+
+.vs-footer-copy {
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: 0.4rem;
+}
+
+/* RESPONSIVO */
+@media (max-width: 480px) {
+  .vs-card-lg {
+    padding: 1.4rem;
+  }
+  .vs-title-lg {
+    font-size: 1.75rem;
+  }
+  .vs-profile-phone {
+    font-size: 1.7rem;
+  }
+  .vs-video-wrap-lg {
+    width: 128%;
+    margin-left: -14%;
+    margin-bottom: 1.6rem;
+  }
+  .vs-progress-text-lg {
+    font-size: 0.9rem;
+  }
+}
+
+.vs-actions-lg {
+  margin-top: 1.4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.vs-access-btn-big {
+  margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+  .vs-access-btn-big,
+  .vs-next-lg {
+    font-size: 1rem;
+    padding: 16px;
+    margin-top: 1rem;
+  }
+}
+
+.vs-comments-fb {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.vs-comments-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vs-comment-fb {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.vs-avatar-fb {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.vs-comment-body {
+  background: #f0f2f5;
+  padding: 10px 14px;
+  border-radius: 16px;
+  max-width: 90%;
+}
+
+.vs-comment-body strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 3px;
+  color: #050505;
+}
+
+.vs-comment-body p {
+  font-size: 0.92rem;
+  margin: 0;
+  color: #050505;
+  line-height: 1.4;
+}
