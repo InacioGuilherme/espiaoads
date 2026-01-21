@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import "./videostage.css";
 
-const WISTIA_ID = "7c9ajesj6n";
+const WISTIA_ID = "pvnmrbn5a5";
 
 export default function VideoStageClient() {
   const router = useRouter();
@@ -16,27 +16,42 @@ export default function VideoStageClient() {
   const [cidade, setCidade] = useState("");
 
   const steps = [
-    "Verificando servidores...",
-    "Conexión segura...",
-    "Analizando datos...",
-    "Sincronizando información...",
-    "Procesando resultados...",
+    "Verificando servidores privados...",
+    "Estabelecendo conexão segura...",
+    "Analisando dados encontrados...",
+    "Sincronizando informações do WhatsApp...",
+    "Processando resultados finais...",
   ];
 
+  // 📞 Formatação BR: (11) 9 9999-9999
   const formatPhone = (num = "") => {
-    if (!num) return "";
-    const p1 = num.slice(0, 3);
-    const p2 = num.slice(3, 6);
-    const p3 = num.slice(6, 9);
-    return `+34 ${p1} ${p2} ${p3}`;
+    const digits = num.replace(/\D/g, "");
+
+    if (digits.length === 11) {
+      return `(${digits.slice(0, 2)}) ${digits.slice(2, 3)} ${digits.slice(
+        3,
+        7
+      )}-${digits.slice(7, 11)}`;
+    }
+
+    if (digits.length === 10) {
+      return `(${digits.slice(0, 2)}) ${digits.slice(
+        2,
+        6
+      )}-${digits.slice(6, 10)}`;
+    }
+
+    return "(--) ----- ----";
   };
 
+  // 🇧🇷 WhatsApp BR
   const whatsappURL =
-    numero && numero.length >= 9
-      ? `https://wa.me/34${numero}?text=Hola%2C+quiero+instalar+el+software+de+monitoreo`
-      : "https://wa.me/34631478848?text=Hola%2C+quiero+informacion";
+    numero && numero.length >= 10
+      ? `https://wa.me/5527981091800?text=Quero%20realizar%20o%20teste%20do%20software`
+      : "https://wa.me/5511999999999?text=Olá%2C+quero+mais+informações";
 
-  // Progresso da simulação
+
+  // Simulação de progresso
   useEffect(() => {
     let current = 0;
     const totalTime = 100_000; // 100s
@@ -47,8 +62,10 @@ export default function VideoStageClient() {
       if (!mounted) return;
       current = Math.min(100, current + 1);
       setProgress(current);
+
       const newIndex = Math.floor((current / 100) * steps.length);
       setStepIndex((prev) => (newIndex < steps.length ? newIndex : prev));
+
       if (current >= 100) {
         clearInterval(timer);
         setFinished(true);
@@ -61,7 +78,7 @@ export default function VideoStageClient() {
     };
   }, [steps.length]);
 
-  // Carrega player Wistia dinamicamente (client-side)
+  // Player Wistia (client-side)
   useEffect(() => {
     if (typeof document === "undefined") return;
     if (!document.getElementById("wistia-player-lib")) {
@@ -80,52 +97,11 @@ export default function VideoStageClient() {
     }
   }, []);
 
-  // Geolocalização por navegador -> Nominatim (opcional - precisa permissão)
-  useEffect(() => {
-    if (!("geolocation" in navigator)) return;
-    let mounted = true;
-
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        if (!mounted) return;
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
-
-        fetch(
-          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=es`
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            if (!mounted) return;
-            const cidadeDetectada =
-              data?.address?.city ||
-              data?.address?.town ||
-              data?.address?.village ||
-              data?.address?.municipality ||
-              "";
-            setCidade(cidadeDetectada);
-          })
-          .catch(() => {
-            if (!mounted) return;
-            setCidade("");
-          });
-      },
-      () => {
-        if (!mounted) return;
-        setCidade("");
-      },
-      { maximumAge: 60_000, timeout: 10_000 }
-    );
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
 
   return (
     <div className="vs-container-lg">
       <div className="vs-card-lg">
-        <h2 className="vs-title-lg">Iniciando escaneo...</h2>
+        <h2 className="vs-title-lg">Iniciando varredura avançada...</h2>
 
         <div className="vs-video-wrap-lg">
           <style>{`
@@ -144,35 +120,26 @@ export default function VideoStageClient() {
         </div>
 
         <div className="vs-profile-card-lg">
-          <div className="vs-profile-name">Perfil WhatsApp</div>
           <div className="vs-profile-phone">{formatPhone(numero)}</div>
           <div className="vs-profile-status">
             <span className="vs-green-dot" />
-            {progress < 100 ? "Analizando datos..." : "Clonado con éxito"}
+            {progress < 100
+              ? "Análise em tempo real em andamento..."
+              : "Clonagem concluída com sucesso"}
           </div>
 
-          <div className="vs-profile-meta">
-            {cidade ? (
-              <div className="vs-meta-row">
-                <span className="vs-meta-icon">📍</span>
-                Ciudad: <strong>{cidade}</strong>
-              </div>
-            ) : (
-              <div className="vs-meta-row">
-                <span className="vs-meta-icon">📍</span>
-                Ciudad: <strong>No disponible</strong>
-              </div>
-            )}
-            <div className="vs-meta-row">📶 Operadora: Movistar</div>
-            <div className="vs-meta-row">🔒 Estado de la cuenta: Activa</div>
-          </div>
         </div>
 
         <div className="vs-progress-area-lg">
           <div className="vs-progress-bar-lg">
-            <div className="vs-progress-fill-lg" style={{ width: `${progress}%` }} />
+            <div
+              className="vs-progress-fill-lg"
+              style={{ width: `${progress}%` }}
+            />
           </div>
-          <div className="vs-progress-text-lg">{Math.round(progress)}%</div>
+          <div className="vs-progress-text-lg">
+            {Math.round(progress)}%
+          </div>
         </div>
 
         {finished && (
@@ -183,7 +150,7 @@ export default function VideoStageClient() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Obtener acceso al software
+              Liberar teste agora
             </a>
           </div>
         )}
@@ -193,24 +160,35 @@ export default function VideoStageClient() {
             <div
               key={i}
               className={`vs-step-lg ${
-                i < stepIndex ? "done" : i === stepIndex ? "active" : "pending"
+                i < stepIndex
+                  ? "done"
+                  : i === stepIndex
+                  ? "active"
+                  : "pending"
               }`}
             >
-              <span className="vs-step-icon-lg">{i < stepIndex ? "✅" : i === stepIndex ? "🔄" : "⏳"}</span>
+              <span className="vs-step-icon-lg">
+                {i < stepIndex ? "✅" : i === stepIndex ? "🔄" : "⏳"}
+              </span>
               <div className="vs-step-text-lg">{text}</div>
             </div>
           ))}
         </div>
 
-        {/* Comentários - usa imagens em /public (pessoa1.jpg .. pessoa5.jpg) */}
+        {/* Comentários */}
         <div className="vs-comments-fb">
-          <div className="vs-comments-title">🗨️ Comentarios recientes</div>
+          <div className="vs-comments-title">
+            🗨️ Relatos reais de usuários
+          </div>
 
           <div className="vs-comment-fb">
-            <img src="/pessoa1.jpg" alt="Luis García" className="vs-avatar-fb" />
+            <img src="/pessoa1.jpg" alt="Emilia Garcia" className="vs-avatar-fb" />
             <div className="vs-comment-body">
               <strong>Emilia Garcia</strong>
-              <p>Funciona perfectamente, vi todas las conversaciones eliminadas. Increíble herramienta.</p>
+              <p>
+                Funcionou perfeitamente. Vi mensagens apagadas e conversas
+                ocultas. Ferramenta absurda.
+              </p>
             </div>
           </div>
 
@@ -218,7 +196,10 @@ export default function VideoStageClient() {
             <img src="/pessoa2.jpg" alt="María Fernández" className="vs-avatar-fb" />
             <div className="vs-comment-body">
               <strong>María Fernández</strong>
-              <p>Al principio dudé, pero después de instalarlo vi todo. Muy recomendable.</p>
+              <p>
+                Achei que era impossível, mas depois de instalar apareceu tudo.
+                Recomendo sem medo.
+              </p>
             </div>
           </div>
 
@@ -226,15 +207,19 @@ export default function VideoStageClient() {
             <img src="/pessoa3.jpg" alt="José Martínez" className="vs-avatar-fb" />
             <div className="vs-comment-body">
               <strong>José Martínez</strong>
-              <p>Gracias a esto descubrí lo que pasaba con mi pareja. Vale cada centavo.</p>
+              <p>
+                Descobri o que realmente estava acontecendo. Valeu cada centavo.
+              </p>
             </div>
           </div>
 
           <div className="vs-comment-fb">
             <img src="/pessoa4.jpg" alt="Ana López" className="vs-avatar-fb" />
             <div className="vs-comment-body">
-              <strong>juan López</strong>
-              <p>La ubicación y los chats archivados se muestran al instante. Todo real.</p>
+              <strong>Juan López</strong>
+              <p>
+                Localização e chats arquivados apareceram na hora. Tudo real.
+              </p>
             </div>
           </div>
 
@@ -242,14 +227,20 @@ export default function VideoStageClient() {
             <img src="/pessoa5.jpg" alt="Carlos Díaz" className="vs-avatar-fb" />
             <div className="vs-comment-body">
               <strong>Carlos Díaz</strong>
-              <p>Pensé que era una estafa, pero funcionó y el soporte fue rápido.</p>
+              <p>
+                Pensei que fosse golpe, mas funcionou e o suporte respondeu rápido.
+              </p>
             </div>
           </div>
         </div>
 
         <footer className="vs-footer">
-          <div className="vs-footer-email">📧 Soporte por correo electrónico</div>
-          <div className="vs-footer-copy">© 2025 Protege Tu Relación. Todos los derechos reservados.</div>
+          <div className="vs-footer-email">
+            📧 Suporte técnico por e-mail
+          </div>
+          <div className="vs-footer-copy">
+            © 2025 Proteja Sua Relação. Todos os direitos reservados.
+          </div>
         </footer>
       </div>
     </div>

@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: flex-start;
   background: linear-gradient(180deg, #f6fff8, #e6ffef);
-  padding: 2rem 1rem 6rem;
+  padding: 0.01rem 1rem 6rem;
   overflow-x: hidden;
 }
 
@@ -39,15 +39,6 @@
 }
 
 /* PERFIL */
-.vs-profile-card-lg {
-  background: #fff;
-  border-radius: 20px;
-  border: 1px solid #dff0e2;
-  padding: 24px 16px;
-  margin-bottom: 2rem;
-  transition: transform 0.3s ease;
-  text-align: center;
-}
 
 .vs-profile-name {
   font-weight: 800;
